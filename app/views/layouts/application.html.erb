@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProjetoPousadaOnrails</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application" %>
+  </head>
+
+  <body>
+    
+   <main>
+     <div>
+      <%= alert %>
+      <%= notice %>
+     </div>
+     <%= yield %>
+    </main>
+    <footer>
+    <p>qualquer dúvida favor entrar em contato pelo contato: contato_comigomesmo@outlook.com </p>    
+    </footer>
+  </body>
+</html>

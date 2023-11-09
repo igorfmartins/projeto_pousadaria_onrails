@@ -1,0 +1,49 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  brand_name: MyString
+  corporate_name: MyString
+  cnpj: 1
+  contact_phone: 1
+  email: MyString
+  full_address: MyString
+  state: MyString
+  city: MyString
+  zip_code: 1
+  description: MyText
+  rooms_max: 1
+  pets_accepted: false
+  breakfast: false
+  camping: false
+  accessibility: MyString
+  boolean: MyString
+  policies: MyText
+  payment_methods: MyString
+  check_in_time: 2023-11-06 18:28:56
+  check_out_time: 2023-11-06 18:28:56
+  active: false
+  owner: one
+
+two:
+  brand_name: MyString
+  corporate_name: MyString
+  cnpj: 1
+  contact_phone: 1
+  email: MyString
+  full_address: MyString
+  state: MyString
+  city: MyString
+  zip_code: 1
+  description: MyText
+  rooms_max: 1
+  pets_accepted: false
+  breakfast: false
+  camping: false
+  accessibility: MyString
+  boolean: MyString
+  policies: MyText
+  payment_methods: MyString
+  check_in_time: 2023-11-06 18:28:56
+  check_out_time: 2023-11-06 18:28:56
+  active: false
+  owner: two
