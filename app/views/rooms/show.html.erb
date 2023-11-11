@@ -1,0 +1,43 @@
+<h1><%= @room.name %></h1>
+<h2> Detalhes do Quarto </h2>
+
+<dl>
+  <dt>Descrição:</dt>
+  <dd><%= @room.description %></dd>
+
+  <dt>Dimensão (m²):</dt>
+  <dd><%= @room.dimension %></dd>
+
+  <dt>Capacidade Máxima de Hóspedes:</dt>
+  <dd><%= @room.max_occupancy %></dd>
+
+  <dt>Diária:</dt>
+  <dd><%= number_to_currency(@room.daily_rate) %></dd>
+
+  <dt>Banheiro:</dt>
+  <dd><%= @room.bathroom ? 'Sim' : 'Não' %></dd>
+
+  <dt>Varanda:</dt>
+  <dd><%= @room.balcony ? 'Sim' : 'Não' %></dd>
+
+  <dt>Ar Condicionado:</dt>
+  <dd><%= @room.air_conditioning ? 'Sim' : 'Não' %></dd>
+
+  <dt>TV:</dt>
+  <dd><%= @room.tv ? 'Sim' : 'Não' %></dd>
+
+  <dt>Guarda-Roupa:</dt>
+  <dd><%= @room.wardrobe ? 'Sim' : 'Não' %></dd>
+
+  <dt>Cofre:</dt>
+  <dd><%= @room.safe ? 'Sim' : 'Não' %></dd>
+
+  <dt>Acessível:</dt>
+  <dd><%= @room.accessible ? 'Sim' : 'Não' %></dd>
+
+  <dt>Disponível para Reserva:</dt>
+  <dd><%= @room.available ? 'Sim' : 'Não' %></dd>
+</dl>
+
+<%= link_to 'Editar Quarto', edit_inn_room_path(@room.inn, @room) %> <br>
+<%= link_to 'Voltar', inn_path(@room.inn) %>

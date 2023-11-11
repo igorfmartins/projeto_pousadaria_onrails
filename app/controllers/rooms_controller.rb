@@ -1,4 +1,3 @@
-# app/controllers/rooms_controller.rb
 class RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_inn
@@ -8,34 +7,33 @@ class RoomsController < ApplicationController
     @rooms = @inn.rooms
   end
 
-  def show
-    # Implemente a lógica para exibir os detalhes de um quarto se necessário
-  end
-
   def new
     @room = Room.new
-  end
+  end  
 
   def create
-    @room = Room.new(room_params)
+    @room = current_user.inn.rooms.build(room_params)
     if @room.save
-      redirect_to inn_path(@inn), notice: 'Quarto adicionado com sucesso.'
+      redirect_to inn_path(current_user.inn), notice: 'Quarto adicionado com sucesso.'
     else
+      flash.now[:alert] = 'Algo deu errado, tente novamente.'
       render :new
     end
   end
 
   def edit
-    # Implemente a lógica para editar um quarto se necessário
-  end
-
-  def update
-    if @room.update(room_params)
-      redirect_to inn_path(@inn), notice: 'Quarto atualizado com sucesso.'
-    else
-      render :edit
-    end
-  end
+    @room = Room.find(params[:id])
+   end
+ 
+   def update
+    @room = Room.find(params[:id])
+     if @room.update(room_params)
+      redirect_to @inn, notice: 'Quarto atualizado com sucesso.'
+     else
+      flash.now[:alert] = 'Qaurto não atualizado.'
+      render 'edit'
+     end
+   end 
 
   private
 

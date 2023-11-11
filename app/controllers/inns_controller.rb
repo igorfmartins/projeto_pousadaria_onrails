@@ -2,7 +2,7 @@ class InnsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    
+    redirect_to root_path
   end
   
   def show
@@ -11,13 +11,10 @@ class InnsController < ApplicationController
   
   def new
     @inn = Inn.new
-    @inn.user = current_user
   end
-
 
   def create
     @inn = Inn.new(inn_params)
-    @inn.user = current_user
 
     if @inn.save
       flash[:notice] = 'Sua pousada foi cadastrada com sucesso!'

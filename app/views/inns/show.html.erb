@@ -1,5 +1,5 @@
 <h1><%= @inn.brand_name %></h1>
-<h2> Aqui as informações detalhadas da sua Pousada.</h2>
+<h2> Aqui as informações e detalhes da sua Pousada.</h2>
 
 
 <%= link_to 'Cadastrar Quartos', new_inn_room_path(@inn) %>
@@ -39,7 +39,7 @@
   <dd><%= @inn.camping ? 'Sim' : 'Não' %></dd>
 
   <dt>Acessibilidade:</dt>
-  <dd><%= @inn.accessibility %></dd>
+  <dd><%= @inn.accessibility ? 'Sim' : 'Não' %></dd>
 
   <dt>Políticas:</dt>
   <dd><%= @inn.policies %></dd>
@@ -56,6 +56,20 @@
   <dt>Status:</dt>
   <dd><%= @inn.active ? 'Ativa' : 'Inativa' %></dd>
 
+</dl>
+
+<dt>Quartos:</dt>
+<dd>
+  <ul>
+     <% @inn.rooms.where(available: true).each do |room| %>
+      <li>
+        <%= link_to room.name, inn_room_path(@inn, room) %> | <%= 'Clique aqui para mais informações.' %>
+      </li>
+    <% end %>
+  </ul>
+</dd>
+</dl>
+
 
 <%= link_to 'Editar Pousada', edit_inn_path(@inn) %> <br>
-<%= link_to 'Voltar', inns_path %>
+

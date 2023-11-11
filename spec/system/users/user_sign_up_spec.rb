@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 describe 'Owner cria uma conta' do
     it 'com sucesso' do
         #Arrange
@@ -32,8 +31,6 @@ describe 'Owner cria uma conta' do
         #Assert
         expect(page).to have_content 'Não foi possível cadastrar o proprietário.'
         expect(page).to have_content "Email can't be blank"
-        expect(page).to have_content "Password can't be blank"        
-      end
+        expect(page).to have_content "Password can't be blank"     
     end   
-
 end

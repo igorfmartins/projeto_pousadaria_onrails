@@ -1,14 +1,2 @@
 
-<div> 
-  <% if user_signed_in? %>
-    <%= current_user.email%>
-    <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
-    
-    <%= link_to 'Cadastrar Pousada', register_inn_user_path(current_user), method: :get %>
-
-    <%= link_to('Voltar', root_path)%>   
-  <% else %>
-    <%= link_to 'Faça o Login',  new_user_session_path %> <br>
-    <%= link_to 'Crie uma conta',new_user_registration_path %>      
-  <% end %>   
-</div>
+aqui o codigo do index#home
