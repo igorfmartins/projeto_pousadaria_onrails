@@ -1,8 +1,6 @@
 <h1> Cadastro de Pousadas </h1>
 
-
-<%= form_with(model: @inn, local: true) do |f| %>
-  <%= f.hidden_field :inn_id, value: @inn_owner %>
+<%= form_with(model: @inn, local: true) do |f| %>     
   <div>
     <%= f.label :brand_name %>
     <%= f.text_field :brand_name %>
@@ -82,22 +80,35 @@
   <div>
     <%= f.label :active, 'Pousada Disponível' %>
     <%= f.check_box :active %>
-  </div>
+  </div> 
+  <div>
+    <%= f.label :user, 'Dono' %>
+    <%= f.check_box :active %>
+  </div> 
+   <%= f.hidden_field :user_id, value: current_user.id %>
+
   <div>
     <%= f.submit 'Cadastrar Pousada' %>    
   </div>
 <% end %>
 
-<% if (@inn.errors.any?) %>
-  <p> Verifique os erros abaixo </p>
-  <ul> 
-     <% @inn.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li> 
-     <% end %>  
-  </ul>
+<% if @inn.present? && @inn.errors.any? %>
+  <div class="alert alert-danger">
+    <h4>Ops! Houve alguns problemas com o cadastro da pousada:</h4>
+    <ul>
+      <% @inn.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
 
+
 <% if @inn.persisted? %>
-  <p>Pousada cadastrada com sucesso!</p>
+  <p>Sua pousada foi cadastrada com sucesso!</p>
+  <p>Agora você pode adicionar quartos para a sua pousada:</p>
   <p><%= link_to 'Cadastrar Quartos', new_inn_room_path(@inn) %></p>
 <% end %>
+
+
+<%= link_to('Voltar', root_path)%>

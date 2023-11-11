@@ -1,33 +1,33 @@
 class InnsController < ApplicationController
   before_action :authenticate_user!
-
+  
   def index
-    @inns = Inn.all
+    
   end
-
-  def new
-    @inn_owner = current_user.id
-    @inn = Inn.new
-       
-  end
-
+  
   def show
     @inn = Inn.find(params[:id])
   end
+  
+  def new
+    @inn = Inn.new
+    @inn.user = current_user
+  end
+
 
   def create
-    @inn_owner = current_user.id
     @inn = Inn.new(inn_params)
-      
+    @inn.user = current_user
+
     if @inn.save
-     flash[:notice] = 'Sua pousada foi cadastrada com sucesso.'
-     redirect_to @inn
+      flash[:notice] = 'Sua pousada foi cadastrada com sucesso!'
+      redirect_to @inn
     else
-     flash[:alert] = 'Não foi possível cadastrar a pousada.'
-     render 'new'
+      flash.now[:alert] = 'Não foi possível cadastrar a pousada.'
+      render 'new'
     end
   end
-      
+
 
   def edit
    @inn = Inn.find(params[:id])
@@ -48,11 +48,7 @@ class InnsController < ApplicationController
   private    
       
   def inn_params
-    params.require(:inn).permit(:brand_name, :corporate_name, :cnpj, :contact_phone, :email, 
-                                :full_address, :state, :city, :zip_code, :description, :rooms_max,
-                                :pets_accepted, :breakfast, :camping, :accessibility, :policies, 
-                                :payment_methods, :check_in_time, :check_out_time, :active, :owner_id)
-  end
-  
+    params.require(:inn).permit(:brand_name, :corporate_name, :cnpj, :contact_phone, :email, :full_address, :state, :city, :zip_code, :description, :rooms_max, :pets_accepted, :breakfast, :camping, :accessibility, :policies, :payment_methods, :check_in_time, :check_out_time, :active)
+  end  
   
 end

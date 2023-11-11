@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_09_081445) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_10_222730) do
   create_table "inns", force: :cascade do |t|
     t.string "brand_name"
     t.string "corporate_name"
@@ -33,10 +33,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_081445) do
     t.time "check_in_time"
     t.time "check_out_time"
     t.boolean "active"
-    t.integer "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "index_inns_on_owner_id"
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_inns_on_user_id"
   end
 
   create_table "owners", force: :cascade do |t|
@@ -89,6 +89,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_09_081445) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "inns", "owners"
+  add_foreign_key "inns", "users"
   add_foreign_key "rooms", "inns"
 end

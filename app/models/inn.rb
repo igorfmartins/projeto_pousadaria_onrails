@@ -1,4 +1,6 @@
 class Inn < ApplicationRecord
-  belongs_to :owner
-  validates :brand_name, :corporate_name, :cnpj, :contact_phone, :email, :full_address, :state, :city, :zip_code, :description, :rooms_max, :accessibility, :policies, :payment_methods, :check_in_time, :check_out_time, :active, presence: true
+  belongs_to :user
+  has_many :rooms, dependent: :restrict_with_error
+
+  validates :brand_name, :corporate_name, :cnpj, :contact_phone, :email, :full_address, :state, :city, :payment_methods, presence: true
 end

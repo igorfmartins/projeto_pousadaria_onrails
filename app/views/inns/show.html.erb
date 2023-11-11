@@ -1,0 +1,61 @@
+<h1><%= @inn.brand_name %></h1>
+<h2> Aqui as informações detalhadas da sua Pousada.</h2>
+
+
+<%= link_to 'Cadastrar Quartos', new_inn_room_path(@inn) %>
+<br>
+<br>
+<br>
+
+<dl>
+  <dt>Razão Social:</dt>
+  <dd><%= @inn.corporate_name %></dd>
+
+  <dt>CNPJ:</dt>
+  <dd><%= @inn.cnpj %></dd>
+
+  <dt>Telefone:</dt>
+  <dd><%= @inn.contact_phone %></dd>
+
+  <dt>Email:</dt>
+  <dd><%= @inn.email %></dd>
+
+  <dt>Endereço:</dt>
+  <dd><%= @inn.full_address %>, <%= @inn.city %> - <%= @inn.state %>, <%= @inn.zip_code %></dd>
+
+  <dt>Descrição:</dt>
+  <dd><%= @inn.description %></dd>
+
+  <dt>Número Máximo de Quartos:</dt>
+  <dd><%= @inn.rooms_max %></dd>
+
+  <dt>Aceita Pets:</dt>
+  <dd><%= @inn.pets_accepted ? 'Sim' : 'Não' %></dd>
+
+  <dt>Serve Café da Manhã:</dt>
+  <dd><%= @inn.breakfast ? 'Sim' : 'Não' %></dd>
+
+  <dt>Possui Área de Camping:</dt>
+  <dd><%= @inn.camping ? 'Sim' : 'Não' %></dd>
+
+  <dt>Acessibilidade:</dt>
+  <dd><%= @inn.accessibility %></dd>
+
+  <dt>Políticas:</dt>
+  <dd><%= @inn.policies %></dd>
+
+  <dt>Métodos de Pagamento:</dt>
+  <dd><%= @inn.payment_methods %></dd>
+
+  <dt>Horário de Check-in:</dt>
+  <dd><%= @inn.check_in_time %></dd>
+
+  <dt>Horário de Check-out:</dt>
+  <dd><%= @inn.check_out_time %></dd>
+
+  <dt>Status:</dt>
+  <dd><%= @inn.active ? 'Ativa' : 'Inativa' %></dd>
+
+
+<%= link_to 'Editar Pousada', edit_inn_path(@inn) %> <br>
+<%= link_to 'Voltar', inns_path %>
