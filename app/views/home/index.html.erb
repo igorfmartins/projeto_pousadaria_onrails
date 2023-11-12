@@ -1,2 +1,11 @@
+<h1>Todas as Pousadas e Quartos Disponíveis</h1>
 
-aqui o codigo do index#home
+<% @inns.each do |inn| %>
+  <h2><%= link_to inn.brand_name, inn %></h2>
+
+  <ul>
+    <% inn.rooms.each do |room| %>
+      <li><%= link_to room.name, inn_room_path(inn, room) %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,5 +1,5 @@
 class InnsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   
   def index
     redirect_to root_path
@@ -26,17 +26,22 @@ class InnsController < ApplicationController
   end
 
 
-  def edit
-   @inn = Inn.find(params[:id])
+  def editif current_user != @inn.user
+    flash[:alert] = "Você não tem permissão para editar esta pousada."
+    redirect_to @inn 
   end
 
   def update
     @inn = Inn.find(params[:id])
-    if @inn.update(inn_params)
-     redirect_to @inn, notice: 'Pousada atualizada com sucesso.'
+    if current_user == @inn.user
+      if @inn.update(inn_params)
+        redirect_to @inn, notice: "Pousada atualizada com sucesso."
+      else
+        render :edit
+      end
     else
-     flash.now[:alert] = 'Pousada não atualizada.'
-     render 'edit'
+      flash[:alert] = "Você não tem permissão para editar esta pousada."
+      redirect_to @inn # ou redirecione para onde você achar apropriado
     end
   end 
           

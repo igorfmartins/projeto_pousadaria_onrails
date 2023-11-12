@@ -1,1 +1,9 @@
-entrou visitor
+<h1>Pousadas Mais Recentes</h1>
+<% @recent_inns.each do |inn| %>
+  <p><%= link_to inn.brand_name, visitor_path(inn) %>, <%= inn.city %></p>
+<% end %>
+
+<h1>Todas as Pousadas Ativas</h1>
+<% @other_inns.each do |inn| %>
+  <p><%= link_to inn.brand_name, visitor_path(inn) %>, <%= inn.city %></p>
+<% end %>

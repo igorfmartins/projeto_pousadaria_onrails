@@ -1,10 +1,14 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
   before_action :set_inn
   before_action :set_room, only: %i[show edit update]
 
   def index
     @rooms = @inn.rooms
+  end
+
+  def show
+    
   end
 
   def new

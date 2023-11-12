@@ -1,0 +1,15 @@
+<h1><%= @inn.brand_name %></h1>
+<dl>
+  <dt>Nome Fantasia:</dt>
+  <dd><%= @inn.brand_name %></dd>
+
+  <!-- Adicione outros atributos que deseja exibir aqui -->
+
+  <dt>Descrição:</dt>
+  <dd><%= @inn.description %></dd>
+
+  <dt>Meios de Pagamento:</dt>
+  <dd><%= @inn.payment_methods %></dd>
+</dl>
+
+<%= link_to 'Voltar', visitors_path %>

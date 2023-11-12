@@ -8,11 +8,13 @@
 <br>
 
 <dl>
-  <dt>Razão Social:</dt>
-  <dd><%= @inn.corporate_name %></dd>
+ <% if user_signed_in? %>
+    <dt>Razão Social:</dt>
+    <dd><%= @inn.corporate_name %></dd>
 
-  <dt>CNPJ:</dt>
-  <dd><%= @inn.cnpj %></dd>
+    <dt>CNPJ:</dt>
+    <dd><%= @inn.cnpj %></dd>
+  <% end %>
 
   <dt>Telefone:</dt>
   <dd><%= @inn.contact_phone %></dd>
@@ -70,6 +72,5 @@
 </dd>
 </dl>
 
-
-<%= link_to 'Editar Pousada', edit_inn_path(@inn) %> <br>
-
+<%= link_to 'Editar Pousada', edit_inn_path(@inn) if user_signed_in? %><br>
+<%= link_to 'Voltar', root_path %>

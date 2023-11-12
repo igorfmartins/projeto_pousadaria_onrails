@@ -36,8 +36,27 @@
   <dd><%= @room.accessible ? 'Sim' : 'Não' %></dd>
 
   <dt>Disponível para Reserva:</dt>
-  <dd><%= @room.available ? 'Sim' : 'Não' %></dd>
+  <dd><%= @room.available ? 'Sim' : 'Não' %></dd>  
 </dl>
 
-<%= link_to 'Editar Quarto', edit_inn_room_path(@room.inn, @room) %> <br>
-<%= link_to 'Voltar', inn_path(@room.inn) %>
+
+<h2>Preços Personalizados</h2>
+<% @room.prices.each do |price| %>
+  <p><%= price.start_date %> - <%= price.end_date %>: <%= number_to_currency(price.daily_rate) %></p>
+<% end %>
+
+
+<% if user_signed_in? %>    
+ 
+  <% @room.prices.each do |price| %>
+    <p><%= price.start_date %> - <%= price.end_date %>: <%= number_to_currency(price.daily_rate) %></p>
+  <% end %>
+
+  <%= link_to 'Adicionar Preço Personalizado', new_room_price_path(@room) %> <br><br>
+  <%= link_to 'Editar Quarto', edit_inn_room_path(@room.inn, @room) %><br>
+<% end %>
+
+<%= link_to 'Voltar', root_path %>
+
+
+
