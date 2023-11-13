@@ -1,7 +1,6 @@
-class RoomsController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
-  before_action :set_inn
-  before_action :set_room, only: %i[show edit update]
+class RoomsController < ApplicationController 
+  before_action :authenticate_user!
+  before_action :set_room
 
   def index
     @rooms = @inn.rooms
@@ -20,30 +19,26 @@ class RoomsController < ApplicationController
     if @room.save
       redirect_to inn_path(current_user.inn), notice: 'Quarto adicionado com sucesso.'
     else
-      flash.now[:alert] = 'Algo deu errado, tente novamente.'
+      flash[:alert] = 'Algo deu errado, tente novamente.'
       render :new
     end
   end
 
   def edit
-    @room = Room.find(params[:id])
+    @room
    end
  
    def update
-    @room = Room.find(params[:id])
+    @room
      if @room.update(room_params)
-      redirect_to @inn, notice: 'Quarto atualizado com sucesso.'
+      redirect_to @room, notice: 'Quarto atualizado com sucesso.'
      else
-      flash.now[:alert] = 'Qaurto não atualizado.'
+      flash.now[:alert] = 'Quarto não atualizado.'
       render 'edit'
      end
    end 
 
   private
-
-  def set_inn
-    @inn = Inn.find(params[:inn_id])
-  end
 
   def set_room
     @room = Room.find(params[:id])

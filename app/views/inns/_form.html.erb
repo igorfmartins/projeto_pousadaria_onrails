@@ -81,9 +81,7 @@
     <%= f.check_box :active %>
   </div> 
   <div>
-    <%= f.label :user, 'Dono' %>
-    <%= f.check_box :active %>
-  </div> 
+    <%= f.hidden_field :user_id, value: current_user.id %>
   <div>
     <%= f.submit 'Cadastrar Pousada' %>    
   </div>

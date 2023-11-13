@@ -5,16 +5,14 @@ class InnsController < ApplicationController
     redirect_to root_path
   end
   
-  def show
-    @inn = Inn.find(params[:id])
-  end
-  
   def new
     @inn = Inn.new
+    @inn.user = current_user
   end
 
   def create
     @inn = Inn.new(inn_params)
+    @inn.user = current_user
 
     if @inn.save
       flash[:notice] = 'Sua pousada foi cadastrada com sucesso!'
@@ -25,26 +23,23 @@ class InnsController < ApplicationController
     end
   end
 
-
-  def editif current_user != @inn.user
-    flash[:alert] = "Você não tem permissão para editar esta pousada."
-    redirect_to @inn 
+  def edit
+   @inn = Inn.find(params[:id])
   end
 
   def update
     @inn = Inn.find(params[:id])
-    if current_user == @inn.user
-      if @inn.update(inn_params)
-        redirect_to @inn, notice: "Pousada atualizada com sucesso."
-      else
-        render :edit
-      end
+    if @inn.update(inn_params)
+     redirect_to @inn, notice: 'Pousada atualizada com sucesso.'
     else
-      flash[:alert] = "Você não tem permissão para editar esta pousada."
-      redirect_to @inn # ou redirecione para onde você achar apropriado
+     flash.now[:alert] = 'Pousada não atualizada.'
+     render 'edit'
     end
   end 
-          
+  
+  def show
+    @inn = Inn.find(params[:id])
+  end          
       
 
   private    

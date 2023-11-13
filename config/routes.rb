@@ -1,4 +1,3 @@
-# config/routes.rb
 Rails.application.routes.draw do
   devise_for :visitors
   devise_for :users
@@ -13,24 +12,19 @@ Rails.application.routes.draw do
   
   resources :inns, only: [:show]
   resources :rooms, only: [:show]  
-  resources :prices
   resources :visitors
-
-
+  
   authenticate :user do
     resources :inns, only: [:new, :create, :edit, :update]
     resources :rooms, only: [:new, :create, :edit, :update]
-  end  
-  
+  end
+
   resources :inns do
     resources :rooms
   end
-
-  resources :rooms do
-    resources :prices, only: [:new, :create]
-  end
   
-
+  resources :rooms do
+    resources :prices, only: [:new, :create, :edit, :update, :destroy]
+  end
 
 end
-

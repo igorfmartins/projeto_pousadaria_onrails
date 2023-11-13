@@ -3,57 +3,60 @@
 
 <dl>
   <dt>Descrição:</dt>
-  <dd><%= @room.description %></dd>
+  <dd><%= @room.description %></dd><br>
 
   <dt>Dimensão (m²):</dt>
-  <dd><%= @room.dimension %></dd>
+  <dd><%= @room.dimension %></dd><br>
 
   <dt>Capacidade Máxima de Hóspedes:</dt>
-  <dd><%= @room.max_occupancy %></dd>
+  <dd><%= @room.max_occupancy %></dd><br>
 
   <dt>Diária:</dt>
-  <dd><%= number_to_currency(@room.daily_rate) %></dd>
+  <dd><%= number_to_currency(@room.daily_rate) %></dd><br>
 
   <dt>Banheiro:</dt>
-  <dd><%= @room.bathroom ? 'Sim' : 'Não' %></dd>
+  <dd><%= @room.bathroom ? 'Sim' : 'Não' %></dd><br>
 
   <dt>Varanda:</dt>
-  <dd><%= @room.balcony ? 'Sim' : 'Não' %></dd>
+  <dd><%= @room.balcony ? 'Sim' : 'Não' %></dd><br>
 
   <dt>Ar Condicionado:</dt>
-  <dd><%= @room.air_conditioning ? 'Sim' : 'Não' %></dd>
+  <dd><%= @room.air_conditioning ? 'Sim' : 'Não' %></dd><br>
 
   <dt>TV:</dt>
-  <dd><%= @room.tv ? 'Sim' : 'Não' %></dd>
+  <dd><%= @room.tv ? 'Sim' : 'Não' %></dd><br>
 
   <dt>Guarda-Roupa:</dt>
-  <dd><%= @room.wardrobe ? 'Sim' : 'Não' %></dd>
+  <dd><%= @room.wardrobe ? 'Sim' : 'Não' %></dd><br>
 
   <dt>Cofre:</dt>
-  <dd><%= @room.safe ? 'Sim' : 'Não' %></dd>
+  <dd><%= @room.safe ? 'Sim' : 'Não' %></dd><br>
 
-  <dt>Acessível:</dt>
-  <dd><%= @room.accessible ? 'Sim' : 'Não' %></dd>
+  <dt>Acessibilidade:</dt>
+  <dd><%= @room.accessible ? 'Sim' : 'Não' %></dd><br>
 
   <dt>Disponível para Reserva:</dt>
-  <dd><%= @room.available ? 'Sim' : 'Não' %></dd>  
+  <dd><%= @room.available ? 'Sim' : 'Não' %></dd><br>
 </dl>
 
+<h2> Preços especiais de Temporada </h2>
 
-<h2>Preços Personalizados</h2>
+
 <% @room.prices.each do |price| %>
-  <p><%= price.start_date %> - <%= price.end_date %>: <%= number_to_currency(price.daily_rate) %></p>
+  <p>
+    <%= "#{price.start_date.strftime('%d/%m')} até #{price.end_date.strftime('%d/%m')}: #{number_to_currency(price.daily_rate)}" %>
+    <% if user_signed_in? %>     
+     <%= button_to 'Remover', room_price_path(@room, price), method: :delete %>
+    <% end %>
+  </p>
 <% end %>
 
 
 <% if user_signed_in? %>    
- 
-  <% @room.prices.each do |price| %>
-    <p><%= price.start_date %> - <%= price.end_date %>: <%= number_to_currency(price.daily_rate) %></p>
-  <% end %>
 
-  <%= link_to 'Adicionar Preço Personalizado', new_room_price_path(@room) %> <br><br>
-  <%= link_to 'Editar Quarto', edit_inn_room_path(@room.inn, @room) %><br>
+  <%= link_to 'Adicionar Preço Personalizado', new_room_price_path(@room) %> <br>
+  <%= link_to 'Editar Preços Personalizados', edit_room_price_path(@room.inn, @room) %><br><br>
+  <%= link_to 'Editar Quarto', edit_inn_room_path(@room.inn, @room) %><br><br>
 <% end %>
 
 <%= link_to 'Voltar', root_path %>
