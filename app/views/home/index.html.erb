@@ -1,12 +1,11 @@
 <h1>Todas as Pousadas e Quartos Disponíveis</h1>
 
-<% @inns.each do |inn| %>
-  <h2><%= link_to inn.brand_name, inn %></h2>
+<h2>As 3 Pousadas mais recentes nos nossos registros:</h2>
+<% @latest_inns.each do |inn| %>
+  <p><%= link_to "#{inn.brand_name} - #{inn.city}", inn %></p>
+<% end %>
 
-  <ul>
-    <% inn.rooms.where(available: true).order(:name).each do |room| %>
-      <li><%= link_to room.name, inn_room_path(inn, room) %></li>
-    <% end %>
-  </ul>
-
+<h2>Outras Pousadas Cadastradas e Ativas:</h2>
+<% @other_inns.each do |inn| %>
+  <p><%= link_to "#{inn.brand_name} - #{inn.city}", inn %></p>
 <% end %>

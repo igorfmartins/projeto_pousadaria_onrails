@@ -22,14 +22,6 @@
           <%= link_to 'Faça o Login User', new_user_session_path %> <br>
           <%= link_to 'Crie uma conta como User', new_user_registration_path %> <br><br>   
         <% end %>
-
-        <% if visitor_signed_in? %>
-          <%= current_visitor&.email %> <br>     
-          <%= button_to 'Sair', destroy_visitor_session_path, method: :delete %> 
-        <% else %>
-          <%= link_to 'Faça o Login Visitor', new_visitor_session_path %> <br>
-          <%= link_to 'Crie uma conta como visitante', new_visitor_registration_path %>      
-        <% end %> 
       </div>
 </header>
     

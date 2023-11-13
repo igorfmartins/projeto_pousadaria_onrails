@@ -1,6 +1,3 @@
-
-inn edit 
-
 require 'rails_helper'
 
 describe 'Owner edita uma pousada' do

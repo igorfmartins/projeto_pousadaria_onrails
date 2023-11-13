@@ -41,24 +41,15 @@
 
 <h2> Preços especiais de Temporada </h2>
 
-
 <% @room.prices.each do |price| %>
   <p>
     <%= "#{price.start_date.strftime('%d/%m')} até #{price.end_date.strftime('%d/%m')}: #{number_to_currency(price.daily_rate)}" %>
-    <% if user_signed_in? %>     
-     <%= button_to 'Remover', room_price_path(@room, price), method: :delete %>
-    <% end %>
+    <%= button_to 'Remover', room_price_path(@room, price), method: :delete  if user_signed_in? %>
   </p>
 <% end %>
 
 
-<% if user_signed_in? %>    
-
-  <%= link_to 'Adicionar Preço Personalizado', new_room_price_path(@room) %> <br>
-  <%= link_to 'Editar Preços Personalizados', edit_room_price_path(@room.inn, @room) %><br><br>
-  <%= link_to 'Editar Quarto', edit_inn_room_path(@room.inn, @room) %><br><br>
-<% end %>
-
+<%= link_to 'Adicionar Preço Personalizado', new_room_price_path(@room) if user_signed_in? %> <br>
 <%= link_to 'Voltar', root_path %>
 
 

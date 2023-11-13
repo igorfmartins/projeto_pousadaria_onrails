@@ -79,6 +79,39 @@ GEM
     base64 (0.1.1)
     bcrypt (3.1.19)
     bigdecimal (3.1.4)
+    brI18n (3.3.0)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    br_documents (0.2.5)
+      activemodel (>= 4.0.0)
+      i18n (>= 0.6.5)
+    brazilian-rails (3.3.0)
+      brI18n (= 3.3.0)
+      brcep (= 3.3.0)
+      brcpfcnpj (= 3.3.0)
+      brdata (= 3.3.0)
+      brdinheiro (= 3.3.0)
+      brhelper (= 3.3.0)
+      brnumeros (= 3.3.0)
+      brstring (= 3.3.0)
+    brcep (3.3.0)
+    brcpfcnpj (3.3.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    brdata (3.3.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    brdinheiro (3.3.0)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      brnumeros (= 3.3.0)
+    brhelper (3.3.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    brnumeros (3.3.0)
+    brstring (3.3.0)
+      activesupport (>= 3.0.0)
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -250,6 +283,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  br_documents
+  brazilian-rails
   capybara
   debug
   devise
