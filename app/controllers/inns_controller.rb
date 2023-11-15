@@ -1,5 +1,6 @@
 class InnsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, except: [:show, :index]
+
   
   def index
     redirect_to root_path

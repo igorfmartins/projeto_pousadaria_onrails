@@ -13,6 +13,12 @@ Rails.application.routes.draw do
   end
   
   resources :rooms, only: [:show, :index] do
-    resources :prices, only: [:new, :create, :edit, :update, :destroy]
+    resources :prices, only: [:new, :create, :destroy]
   end
+
+  resources :cities, only: [] do   
+    get 'pousadas', to: 'cities#pousadas'
+    get ':city', to: 'home#all'
+  end
+  
 end

@@ -12,6 +12,9 @@
 <% end %>
 
 <dl>
+  <dt>Descrição:</dt>
+  <dd><%= @inn.description %></dd><br>
+
   <dt>Telefone:</dt>
   <dd><%= @inn.contact_phone %></dd><br>
 
@@ -20,10 +23,10 @@
 
   <dt>Endereço:</dt>
   <dd><%= @inn.full_address %>, <%= @inn.city %> - <%= @inn.state %>, <%= @inn.zip_code %></dd><br>
-
-  <dt>Descrição:</dt>
-  <dd><%= @inn.description %></dd><br>
-
+  
+  <dt>Políticas:</dt>
+  <dd><%= @inn.policies %></dd><br><br>
+  
   <dt>Número Máximo de Quartos:</dt>
   <dd><%= @inn.rooms_max %></dd><br>
 
@@ -37,10 +40,7 @@
   <dd><%= @inn.camping ? 'Sim' : 'Não' %></dd><br>
 
   <dt>Acessibilidade:</dt>
-  <dd><%= @inn.accessibility ? 'Sim' : 'Não' %></dd><br>
-
-  <dt>Políticas:</dt>
-  <dd><%= @inn.policies %></dd><br><br>
+  <dd><%= @inn.accessibility ? 'Sim' : 'Não' %></dd><br>  
 
   <dt>Métodos de Pagamento:</dt>
   <dd><%= @inn.payment_methods %></dd><br>

@@ -8,8 +8,8 @@ describe 'Owner cria uma conta' do
         visit root_path
         click_on 'Crie uma conta'        
         fill_in 'Email', with: 'joao@example.com'
-        fill_in 'Password', with: 'password'
-        fill_in 'Password confirmation', with: 'password'
+        fill_in 'Senha', with: 'password'
+        fill_in 'Confirme sua senha', with: 'password'
         click_on 'Sign up'
 
         #Assert        
