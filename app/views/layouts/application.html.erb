@@ -23,6 +23,12 @@
           <%= link_to 'Crie uma conta como User', new_user_registration_path %> <br><br>   
         <% end %>
       </div>
+      <div id="search-form">
+        <%= form_tag(search_results_path, method: :get) do %>
+          <%= text_field_tag :search_term, params[:search_term], placeholder: 'Buscar pousadas...' %>
+          <%= submit_tag 'Buscar' %>
+        <% end %>
+      </div>
 </header>
     
    <main>

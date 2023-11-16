@@ -1,7 +1,8 @@
 Rails.application.routes.draw do  
   devise_for :users
   
-  root to: 'home#index'
+  root to: 'home#index'  
+  get 'search', to: 'search#results', as: 'search_results'
 
   authenticate :user do
     resources :inns, only: [:new, :create, :edit, :update]
@@ -18,7 +19,6 @@ Rails.application.routes.draw do
 
   resources :cities, only: [] do   
     get 'pousadas', to: 'cities#pousadas'
-    get ':city', to: 'home#all'
+    get ':city', to: 'home#all', as: 'home_all'
   end
-  
 end
