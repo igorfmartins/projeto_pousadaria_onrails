@@ -19,9 +19,19 @@
           <%= link_to 'Cadastrar Pousada', new_inn_path %><br><br><br>
           <% end %>
         <% else %>
-          <%= link_to 'Faça o Login User', new_user_session_path %> <br>
-          <%= link_to 'Crie uma conta como User', new_user_registration_path %> <br><br>   
+          <%= link_to 'Faça o Login Proprietário', new_user_session_path %> <br>
+          <%= link_to 'Crie uma conta como Proprietário', new_user_registration_path %> <br><br>   
         <% end %>
+
+        <% if visitor_signed_in? %>
+        <%= current_visitor %>  <br> 
+        <%= button_to 'Sair', destroy_visitor_session_path, method: :delete %>           
+        <% else %>
+          <%= link_to 'Faça o Login Hóspede', new_visitor_session_path %> <br>
+          <%= link_to 'Crie uma conta como Hóspede', new_visitor_registration_path %> <br><br>   
+        <% end %>
+
+
       </div>
       <div id="search-form">
         <%= form_tag(search_results_path, method: :get) do %>

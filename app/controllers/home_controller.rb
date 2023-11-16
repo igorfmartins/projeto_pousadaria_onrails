@@ -10,8 +10,9 @@ class HomeController < ApplicationController
   end
 
   def all
-    @selected_city = params[:city_id]
-    @pousadas_na_cidade = Inn.where("city LIKE ?", "%#{@selected_city}%")
+    @selected_city = params[:city]
+    @pousadas_na_cidade = Inn.where("city LIKE ?", "%#{@selected_city}%").where(active: true)
   end
   
 end
+

@@ -3,7 +3,7 @@
 <h2>Escolha uma cidade:</h2>
 <ul>
   <% @cities_all.each do |city| %>    
-       <li><%= link_to city %></li>
+     <li><%= link_to city, all_home_path(city) %></li>
   <% end %>
 </ul>
 

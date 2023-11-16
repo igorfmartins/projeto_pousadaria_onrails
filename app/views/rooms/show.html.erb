@@ -49,8 +49,9 @@
 <% end %>
 
 
+<%= link_to 'Reservar Agora', new_room_reservation_path(@room) if visitor_signed_in? %>
+<%= link_to 'Ver reservas cadastradas', room_reservations_path(@room) if user_signed_in? && current_user.inn == @room.inn  %><br><br>
+
 <%= link_to 'Adicionar Preço Personalizado', new_room_price_path(@room) if user_signed_in? %> <br>
+<%= link_to 'Editar Quarto', edit_room_path(@room) if user_signed_in?  %><br><br>
 <%= link_to 'Voltar', root_path %>
-
-
-

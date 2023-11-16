@@ -3,12 +3,12 @@ require 'rails_helper'
 describe 'Owner edita uma pousada' do
     it 'com sucesso' do
         #Arrange
-        owner = Owner.create!(name: 'João Silva', email: 'joao@example.com', password: 'password', password confirmation: 'password')
+        owner = User.create!(Email: 'joao@example.com', Password: 'password')
         inn = Inn.create!(brand_name: 'Pousada do João', corporate_name: 'Pousada Joao Corporativo LTDA', cnpj: '34567865432', contact_phone: '3187654325', email: 'pousadajoao@outlook.com', full_address: 'Rua Bonita, 23', state: 'PR', city: 'Curitiba', payment_methods: 'C/B e Pix', owner: owner)
 
         #Act
         login_as owner, scope: :owner
-        visit inn_path(inn)
+        click_on 'Pousada do João'
         click_on 'Editar Pousada'      
         fill_in "Nome Fantasia", with: 'Pousada Sob Nova Direção'     
         fill_in "Endereço", with: 'Rua Mudou, 432'
