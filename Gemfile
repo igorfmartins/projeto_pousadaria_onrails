@@ -24,11 +24,9 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ]
+  gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
   gem "rspec-rails"
   gem "capybara"
-  gem "selenium-webdriver"
-  
 end
 
 group :development do

@@ -17,7 +17,7 @@ class RoomsController < ApplicationController
   def create
     @room = current_user.inn.rooms.build(room_params)
     if @room.save
-      redirect_to inn_path(current_user.inn), notice: 'Quarto adicionado com sucesso.'
+      redirect_to room_path(@room), notice: 'Quarto adicionado com sucesso.'
     else
       flash[:alert] = 'Algo deu errado, tente novamente.'
       render :new

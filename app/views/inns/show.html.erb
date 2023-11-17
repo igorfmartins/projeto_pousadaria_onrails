@@ -46,10 +46,10 @@
   <dd><%= @inn.payment_methods %></dd><br>
 
   <dt>Horário de Check-in:</dt>
-  <dd><%= @inn.check_in_time.strftime('%H:%M') %>h</dd><br>
+  <dd><%= @inn.check_in_time.present? ? @inn.check_in_time.strftime('%H:%M') + 'h' : 'N/A' %></dd><br>
 
   <dt>Horário de Check-out:</dt>
-  <dd><%= @inn.check_out_time.strftime('%H:%M') %>h</dd><br>
+  <dd><%= @inn.check_in_time.present? ? @inn.check_in_time.strftime('%H:%M') + 'h' : 'N/A' %></dd><br>
 
   <dt>Status:</dt>
   <dd><%= @inn.active ? 'Ativa' : 'Inativa' %></dd><br>
