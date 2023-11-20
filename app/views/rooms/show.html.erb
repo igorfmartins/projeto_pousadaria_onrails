@@ -11,9 +11,6 @@
   <dt>Capacidade Máxima de Hóspedes:</dt>
   <dd><%= @room.max_occupancy %></dd><br>
 
-  <dt>Diária:</dt>
-  <dd><%= number_to_currency(@room.daily_rate) %></dd><br>
-
   <dt>Banheiro:</dt>
   <dd><%= @room.bathroom ? 'Sim' : 'Não' %></dd><br>
 
@@ -39,18 +36,27 @@
   <dd><%= @room.available ? 'Sim' : 'Não' %></dd><br>
 </dl>
 
-<h2> Preços especiais de Temporada </h2>
+<h2> Valor diária e Preços especiais de Temporada </h2>
 
-<% @room.prices.each do |price| %>
-  <p>
-    <%= "#{price.start_date.strftime('%d/%m')} até #{price.end_date.strftime('%d/%m')}: #{number_to_currency(price.daily_rate)}" %>
-    <%= button_to 'Remover', room_price_path(@room, price), method: :delete  if user_signed_in? %>
-  </p>
+<% if user_signed_in? || visitor_signed_in? %>   
+
+  <dt>Diária:</dt>
+  <dd><%= number_to_currency(@room.daily_rate) %></dd><br>
+
+  <% @room.prices.each do |price| %>
+    <p>
+      <%= "#{price.start_date.strftime('%d/%m')} até #{price.end_date.strftime('%d/%m')}: #{number_to_currency(price.daily_rate)}" %>
+      <%= button_to 'Remover', room_price_path(@room, price), method: :delete %>
+    </p>
+  <% end %>
+<% else %>
+  <p>Para ver os preços, faça o login.</p>
 <% end %>
 
 
 <%= link_to 'Reservar Agora', new_room_reservation_path(@room) if visitor_signed_in? %>
-<%= link_to 'Ver reservas cadastradas', room_reservations_path(@room) if user_signed_in? && current_user.inn == @room.inn  %><br><br>
+
+<%= link_to 'Ver reservas cadastradas', reservations_path(@room) if user_signed_in? && current_user.inn == @room.inn  %><br><br>
 
 <%= link_to 'Adicionar Preço Personalizado', new_room_price_path(@room) if user_signed_in? %> <br>
 <%= link_to 'Editar Quarto', edit_room_path(@room) if user_signed_in?  %><br><br>

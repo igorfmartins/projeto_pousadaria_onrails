@@ -1,5 +1,5 @@
-<%= form_with(model: [@inn, @room], local: true) do |f| %>
-  <%= f.hidden_field :inn_id, value: current_user.id %>
+<%= form_with(model: @room, local: true) do |f| %>
+  <%= f.hidden_field :inn_id, value: id %>
   
   <div>
     <%= f.label :name %>
