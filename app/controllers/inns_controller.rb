@@ -1,5 +1,5 @@
 class InnsController < ApplicationController
-  before_action :authenticate_user!, except: [:show, :index]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   
   def index
     redirect_to root_path
@@ -13,10 +13,10 @@ class InnsController < ApplicationController
   def create
     @inn = Inn.new(inn_params)
     @inn.user = current_user
-
+  
     if @inn.save
       flash[:notice] = 'Sua pousada foi cadastrada com sucesso!'
-      redirect_to @inn
+      redirect_to inn_path(@inn)
     else
       flash.now[:alert] = 'Não foi possível cadastrar a pousada.'
       render 'new'
@@ -39,7 +39,7 @@ class InnsController < ApplicationController
   
   def show
     @inn = Inn.find(params[:id])
-  end          
+  end        
       
 
   private    

@@ -65,3 +65,7 @@ pt-BR:
     safe: "Cofre"
     accessible: "Acessível"
     available: "Disponível"
+    start_date: "Início"
+    end_date: "Término"
+    daily_rate: "Diária"
+

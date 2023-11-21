@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Owner cadastra um quarto' do
+describe 'Proprietário cadastra um quarto' do
     it 'com sucesso' do
         #Arrange
         owner = User.create!(email: 'joao@example.com', password: 'password')

@@ -1,8 +1,8 @@
 <h1><%= @inn.brand_name %></h1>
 <h2> Aqui as informações e detalhes da Pousada.</h2>
 
-<% if user_signed_in? && current_user.id == @inn.id %>
-  <%= link_to 'Cadastrar Quartos', new_inn_room_path(@inn) %><br><br><br>
+<% if user_signed_in? || current_user.id == @inn.id %>
+  <%= link_to 'Cadastrar Quartos',  new_room_path(@inn) %><br><br><br>
  
   <dt>Razão Social:</dt>
   <dd><%= @inn.corporate_name %></dd><br>

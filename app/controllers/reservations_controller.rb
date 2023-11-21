@@ -2,6 +2,10 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_visitor!
 
+  def show
+    @all_reservations = Reservation.all
+  end
+
   def new
     @room = Room.find(params[:room_id])
     @reservation = Reservation.new
