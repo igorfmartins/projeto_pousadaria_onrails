@@ -1,20 +1,28 @@
-<%= form_with(model: [@room, @price], local: true) do |f| %>
-  <%= f.hidden_field :room_id, value: @room.id %>
-  <div>
-    <%= f.label :start_date %>
-    <%= f.date_field :start_date %>  
-  </div> <br>
-  
-  <div>
-    <%= f.label :end_date %>
-    <%= f.date_field :end_date %>  
-  </div>
-  <br>
+nhaiiiiiiiii
 
-  <div>
+
+<h1>Adicionar Preço Personalizado</h1>
+
+<%= form_for [@room, @price] do |f| %>
+<%= f.hidden_field :room_id, value: @room.id %>
+  <div class="field">
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date %>
+  </div>
+
+  <div class="field">
     <%= f.label :daily_rate %>
-    <%= f.text_field :daily_rate %>    
-  </div> 
-  
-  <%= f.submit 'Salvar' %>
+    <%= f.number_field :daily_rate %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Salvar' %>
+  </div>
 <% end %>
+
+<%= link_to 'Voltar para a sala', @room %>

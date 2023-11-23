@@ -5,7 +5,7 @@ describe 'Proprietário cadastra preço de temporada' do
         #Arrange
         owner = User.create!(email: 'joao@example.com', password: 'password')
         inn = Inn.create!(brand_name: 'Pousada do João',corporate_name: 'Pousada Joao Corporativo LTDA',cnpj: '34567865432',
-            contact_phone: '3187654325',email: 'pousadajoao@outlook.com',full_address: 'Rua Bonita, 23',state: 'PR',
+            contact_phone: '3187654325',email: 'pousadajoao@outlook.com',full_address: 'Rua Bonita, 23',zip_code: '25487896' ,state: 'PR',
             city: 'Curitiba',payment_methods: 'C/B e Pix',check_in_time: DateTime.new(2021, 2, 10),check_out_time: DateTime.new(2021, 2, 20),
             user: owner)
         
@@ -32,14 +32,14 @@ describe 'Proprietário cadastra preço de temporada' do
         #Assert
         expect(page).to have_content 'Valor diária e Preços especiais de Temporada'
         expect(page).to have_content '15/02 até 28/02: $350.00'
-        expect(page).to have_button 'Remover'
+        expect(page).to have_link 'Detalhes do Preço'
     end
 
     it 'e depois apaga o Preço de Temporada' do
         #Arrange
         owner = User.create!(email: 'joao@example.com', password: 'password')
         inn = Inn.create!(brand_name: 'Pousada do João',corporate_name: 'Pousada Joao Corporativo LTDA',cnpj: '34567865432',
-            contact_phone: '3187654325',email: 'pousadajoao@outlook.com',full_address: 'Rua Bonita, 23',state: 'PR',
+            contact_phone: '3187654325',email: 'pousadajoao@outlook.com',full_address: 'Rua Bonita, 23',zip_code: '25487896' ,state: 'PR',
             city: 'Curitiba',payment_methods: 'C/B e Pix',check_in_time: DateTime.new(2021, 2, 10),check_out_time: DateTime.new(2021, 2, 20),
             user: owner)
         
@@ -61,11 +61,13 @@ describe 'Proprietário cadastra preço de temporada' do
         fill_in 'Início', with: '15-02-2023'
         fill_in 'Término', with: '28-02-2023'
         fill_in 'Diária', with: 350
-        click_on 'Salvar'          
-        click_on 'Remover'   
+        click_on 'Salvar'
+        click_on 'Detalhes do Preço'  
+        click_on 'Remover Preço'   
         
         #Assert
-        expect(page).to have_content 'Preço excluído com sucesso.'
+        expect(page).to have_content 'Preço removido com sucesso.'
+        expect(page).not_to have_content '15/02 até 28/02: $350'
         
     end
 

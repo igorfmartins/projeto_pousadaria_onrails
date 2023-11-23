@@ -8,6 +8,8 @@ class RoomsController < ApplicationController
   end
 
   def show    
+    @room = Room.find(params[:id])
+    @prices = @room.prices 
   end
 
   def new

@@ -13,12 +13,20 @@ pt-BR:
             brand_name:
               blank: "não pode ficar em branco"
             corporate_name:
+              blank: "não pode ficar em branco"
+            cnpj:
               blank: "não pode ficar em branco" 
+            email:
+              blank: "não pode ficar em branco"
+            state:
+              blank: "não pode ficar em branco"
+            city:
+              blank: "não pode ficar em branco"
             full_address:
               blank: "não pode ficar em branco"
             contact_phone:      
-              blank: "não pode ficar em branco"
-            cnpj:
+              blank: "não pode ficar em branco"           
+            zip_code:
               blank: "não pode ficar em branco"
         room:
           attributes:
@@ -31,7 +39,7 @@ pt-BR:
             bathroom:      
               blank: "não pode ficar em branco"
             max_occupancy:
-              blank: "não pode ficar em branco"            
+              blank: "não pode ficar em branco"                  
   attributes:
     label: 'atributo'
     brand_name: "Nome Fantasia"

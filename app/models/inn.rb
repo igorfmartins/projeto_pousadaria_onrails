@@ -1,7 +1,7 @@
 class Inn < ApplicationRecord
   belongs_to :user
   has_many :rooms, dependent: :restrict_with_error
-  validates :brand_name, :corporate_name, :contact_phone, :full_address, :cnpj, presence: true
+  validates :brand_name, :corporate_name, :cnpj, :contact_phone, :email, :full_address, :state, :city, :zip_code, presence: true
 
   def self.search(term)
     if term

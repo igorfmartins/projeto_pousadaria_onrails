@@ -1,34 +1,35 @@
 # app/controllers/reservations_controller.rb
 class ReservationsController < ApplicationController
-  before_action :authenticate_visitor!
+  before_action :authenticate_visitor!, only: [:new, :create]
+  before_action :set_room, only: [:new, :create]
 
   def show
     @all_reservations = Reservation.all
   end
 
   def new
-    @room = Room.find(params[:room_id])
-    @reservation = Reservation.new
+    @reservation = Reservations.new
   end
 
   def create
-    @room = Room.find(params[:room_id])
-    @reservation = current_visitor.reservations.new(reservation_params)
+    @reservation = Reservation.new(reservation_params.merge(room: @room))
 
     if @reservation.save
       flash[:success] = 'Reserva criada com sucesso!'
       redirect_to root_path
     else
-      flash[:success] = 'Algo deu errado, tente novamente.'
+      flash[:error] = 'Algo deu errado, tente novamente.'
       render 'new'
     end
   end
 
   private
 
-  def reservation_params
-    params.require(:reservation).permit(:start_date, :end_date, :number_of_guests, :visitor_id, :room_id)
+  def set_room
+    @room = Room.find(params[:room_id])
   end
-  
-   
+
+  def reservation_params
+    params.require(:reservation).permit(:start_date, :end_date, :number_of_guests)
+  end
 end

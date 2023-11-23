@@ -18,6 +18,7 @@ describe 'registra uma pousada' do
         fill_in "Telefone de Contato", with: 1198745244
         fill_in "E-mail", with: 'joao@example.com'
         fill_in "Endereço Completo", with: 'Av. Ali no Sul, 101' 
+        fill_in "CEP", with: '04587-202'
         fill_in "Estado", with: 'SC'
         fill_in "Cidade", with: 'Itajaí'
         fill_in "Métodos de Pagamento", with: 'só C/B'  
@@ -49,6 +50,7 @@ describe 'registra uma pousada' do
         fill_in "Endereço Completo", with: '' 
         fill_in "Estado", with: 'SC'
         fill_in "Cidade", with: 'Itajaí'
+        fill_in "CEP", with: '04587-202'
         fill_in 'Horario do Início de Check-in', with: '02/02/2023'
         fill_in 'Horario Máximo de Check-out', with: '14/02/2023'
         fill_in "Métodos de Pagamento", with: 'só C/B'  
