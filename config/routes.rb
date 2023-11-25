@@ -1,4 +1,4 @@
-Rails.application.routes.draw do  
+Rails.application.routes.draw do
   devise_for :users
   devise_for :visitors
   
@@ -16,10 +16,10 @@ Rails.application.routes.draw do
 
   authenticate :visitor do
     resources :rooms, only: [:show, :index] do 
-      resources :prices, only: [:show]
-      resources :reservations, only: [:new, :create, :destroy] 
+      resources :prices, only: [:show]       
+      
     end          
-  end 
+  end
 
   resources :cities, only: [] do   
     get 'pousadas', to: 'cities#pousadas'   
@@ -27,6 +27,6 @@ Rails.application.routes.draw do
 
   resources :inns, only: [:show, :index] do
     resources :rooms, only: [:show, :index]  
+    resources :reservations, only: [:new, :create, :destroy]
   end
-  
 end

@@ -1,0 +1,13 @@
+<h1>Confirmação de Reserva</h1>
+<h3> sua reserva foi pré-agendada </h3>
+<p>Data de Entrada: <%= @reservation.start_date.strftime("%d/%m/%Y") %></p>
+<p>Data de Saída: <%= @reservation.end_date.strftime("%d/%m/%Y") %></p>
+<p>Número de Hóspedes: <%= @reservation.number_of_guests %></p>
+<p> O valor da diária é R$ <%= @daily %></p><br>
+
+Sua hospedagem ao total serão <%= (@reservation.end_date - @reservation.start_date).to_i %> dias 
+totalizando o valor da estadia em R$ <%= (@daily * (@reservation.end_date - @reservation.start_date)).to_i%><br><br><br>
+
+<%= link_to 'Confirmar Reserva', edit_room_reservation_path(@reservation), method: :patch %><br><br>
+<%= link_to 'Voltar', root_path %>
+

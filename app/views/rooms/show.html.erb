@@ -52,7 +52,7 @@
 <% else %>
   <p>Para ver os preços, faça o login.</p>
 <% end %>
-<%= link_to 'Reservar Agora', new_inn_room_reservation_path(@room.inn, @room) if visitor_signed_in? %>
+<%= link_to 'Reservar Agora', new_room_reservation_path(@room)%>
 <br><br>
 
 <% if current_user && current_user.inn.present? && @room.inn.present? && current_user.inn.id == @room.inn.id %>
