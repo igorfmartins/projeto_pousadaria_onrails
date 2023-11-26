@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_24_230929) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_26_015020) do
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "guests", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "full_name"
+    t.string "cpf"
+    t.index ["email"], name: "index_guests_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_guests_on_reset_password_token", unique: true
   end
 
   create_table "inns", force: :cascade do |t|
@@ -80,7 +94,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_24_230929) do
     t.integer "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "visitor_id"
+    t.integer "guest_id"
     t.string "room"
     t.string "pre_status"
     t.index ["room_id"], name: "index_reservations_on_room_id"
@@ -117,18 +131,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_24_230929) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "visitors", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_visitors_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_visitors_on_reset_password_token", unique: true
   end
 
   add_foreign_key "inns", "users"

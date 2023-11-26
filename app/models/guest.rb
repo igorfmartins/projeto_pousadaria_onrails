@@ -1,4 +1,4 @@
-class Visitor < ApplicationRecord
+class Guest < ApplicationRecord
   has_many :reservations
   
   devise :database_authenticatable, :registerable,

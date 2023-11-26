@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  devise_for :visitors
+  devise_for :guests
   
   root to: 'home#index'  
   get 'search', to: 'search#results', as: 'search_results'
@@ -14,11 +14,10 @@ Rails.application.routes.draw do
     resources :reservations, only: [:show]  
   end
 
-  authenticate :visitor do
-    resources :rooms, only: [:show, :index] do 
-      resources :prices, only: [:show]       
-      
-    end          
+  authenticate :guest do
+    resources :rooms, only: [:show, :index] do
+      resources :reservations, only: [:new, :create]
+    end
   end
 
   resources :cities, only: [] do   
@@ -26,7 +25,16 @@ Rails.application.routes.draw do
   end  
 
   resources :inns, only: [:show, :index] do
-    resources :rooms, only: [:show, :index]  
-    resources :reservations, only: [:new, :create, :destroy]
+    resources :rooms, only: [:show, :index] do 
+      resources :prices, only: [:show]
+      resources :reservations, only: [:new, :create, :destroy] do
+        get 'pre_save', on: :member
+        get 'confirmation', on: :member
+      end
+    end
   end
+  
+  
+
+
 end

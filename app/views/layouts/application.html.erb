@@ -23,14 +23,13 @@
           <%= link_to 'Crie uma conta como Proprietário', new_user_registration_path %> <br><br>   
         <% end %>
 
-        <% if visitor_signed_in? %>
-        <%= current_visitor.email %>  <br> 
-        <%= button_to 'Sair', destroy_visitor_session_path, method: :delete %>           
+        <% if guest_signed_in? %>
+        <%= current_guest.email %>  <br> 
+        <%= button_to 'Sair', destroy_guest_session_path, method: :delete %>           
         <% else %>
-          <%= link_to 'Faça o Login Hóspede', new_visitor_session_path %> <br>
-          <%= link_to 'Crie uma conta como Hóspede', new_visitor_registration_path %> <br><br>   
+          <%= link_to 'Faça o Login Hóspede', new_guest_session_path %> <br>
+          <%= link_to 'Crie uma conta como Hóspede', new_guest_registration_path %> <br><br>   
         <% end %>
-
 
       </div>
       <div id="search-form">

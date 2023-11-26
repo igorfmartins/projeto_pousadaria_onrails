@@ -1,7 +1,6 @@
-# app/models/reservation.rb
 class Reservation < ApplicationRecord
   belongs_to :room
-  belongs_to :visitor
+  belongs_to :guests
   validates :start_date, :end_date, :number_of_guests, presence: true
 
   def available?
