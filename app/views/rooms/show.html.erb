@@ -45,7 +45,12 @@
     <%= link_to 'Detalhes do Preço', room_price_path(@room, price) %><br>
   </p>
 <% end %>
-<%= link_to 'Reservar Agora', new_inn_room_reservation_path(inn_id: @inn.id, room_id: @room.id) %>
+<% if guest_signed_in? %>
+  <%= link_to 'Reservar Agora', new_inn_room_reservation_path(room_id: @room.id) %>
+<% else %>
+  <%= link_to 'Reservar Agora', pre_save_inn_room_reservation_path(inn_id: @inn.id, room_id: @room.id) %>
+<% end %>
+
 <br><br>
 
 <% if current_user && current_user.inn.present? && @room.inn.present? && current_user.inn.id == @room.inn.id %>

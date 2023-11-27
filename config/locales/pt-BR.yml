@@ -8,6 +8,10 @@ pt-BR:
               blank: "não pode ficar em branco"
             password:
               blank: "não pode ficar em branco"
+        reservation:
+          attributes:
+            guest:
+              required: "é obrigatório"      
         inn:
           attributes:
             brand_name:

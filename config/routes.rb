@@ -14,27 +14,18 @@ Rails.application.routes.draw do
     resources :reservations, only: [:show]  
   end
 
-  authenticate :guest do
-    resources :rooms, only: [:show, :index] do
-      resources :reservations, only: [:new, :create]
-    end
-  end
-
-  resources :cities, only: [] do   
-    get 'pousadas', to: 'cities#pousadas'   
-  end  
-
   resources :inns, only: [:show, :index] do
     resources :rooms, only: [:show, :index] do 
       resources :prices, only: [:show]
       resources :reservations, only: [:new, :create, :destroy] do
         get 'pre_save', on: :member
         get 'confirmation', on: :member
+        get 'ready', on: :member 
       end
     end
   end
   
-  
-
-
+  resources :cities, only: [] do   
+    get 'pousadas', to: 'cities#pousadas'   
+  end  
 end
