@@ -8,8 +8,8 @@ class RoomsController < ApplicationController
   end
 
   def show    
-    @inn = Inn.find(params[:inn_id])
-    @room = Room.find(params[:id])
+    @room
+    @inn = @room.inn
     @prices = @room.prices 
   end
 

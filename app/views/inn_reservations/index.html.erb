@@ -1,0 +1,40 @@
+<h2>Reservas da sua Pousada</h2>
+
+<% if @all_my_reservations.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Quarto</th>
+        <th>Data de Entrada</th>
+        <th>Data de Saída</th>
+        <th>Número de Hóspedes</th>
+        <th>Código da Reserva</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @all_my_reservations.each do |reservation| %>
+        <tr>
+          <td><%= reservation.room.name %></td>
+          <td><%= reservation.start_date.strftime('%d/%m/%Y') %></td>
+          <td><%= reservation.end_date.strftime('%d/%m/%Y') %></td>
+          <td><%= reservation.number_of_guests %></td>
+          <td><%= reservation.confirmation_code %></td>
+          <td><%= reservation.active_stay ? 'Ativa' : 'Pendente' %></td>
+          <td>
+            <% if reservation.active_stay %>
+              Já está em estadia
+            <% elsif reservation.checkin_allowed? %>
+              <%= link_to 'Realizar Check-in', checkin_inn_room_reservation_path(inn_id: reservation.room.inn.id, room_id: reservation.room.id, id: reservation.id), method: :post %>
+            <% else %>
+              Não é possível fazer check-in
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Sem reservas disponíveis.</p>
+<% end %>

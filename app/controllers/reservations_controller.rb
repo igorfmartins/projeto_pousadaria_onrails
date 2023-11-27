@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  before_action :set_room
+  before_action :set_room, only: [:pre_save, :new, :create, :confirmation]
 
   def pre_save
     @room 
@@ -65,6 +65,15 @@ class ReservationsController < ApplicationController
     @reservation.update(pre_status: 'confirmada')
     redirect_to root_path, notice: 'Reserva confirmada com sucesso!'
   end
+
+  def my_reservations
+    @reservations = current_guest.reservations
+  
+    if @reservations.empty?
+      flash.now[:notice] = 'Você não tem reservas.'
+    end
+  end
+  
 
   def destroy
     @reservation = Reservation.find(params[:id])
